@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.caue</groupId>
-	<artifactId>dscommerce</artifactId>
+	<artifactId>democommerce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dscommerce</name>
-	<description>DSCommerce Devsuperior</description>
+	<name>democommerce</name>
+	<description>Demo Commerce</description>
 	<url/>
 	<licenses>
 		<license/>

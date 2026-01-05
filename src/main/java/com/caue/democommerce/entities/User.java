@@ -1,4 +1,4 @@
-package com.caue.dscommerce.entities;
+package com.caue.democommerce.entities;
 
 import jakarta.persistence.*;
 

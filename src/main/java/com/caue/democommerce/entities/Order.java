@@ -1,6 +1,6 @@
-package com.caue.dscommerce.entities;
+package com.caue.democommerce.entities;
 
-import com.caue.dscommerce.enums.OrderStatus;
+import com.caue.democommerce.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package com.caue.dscommerce.enums;
+package com.caue.democommerce.enums;
 
 public enum OrderStatus {
 

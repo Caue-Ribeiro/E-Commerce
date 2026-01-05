@@ -1,13 +1,13 @@
-package com.caue.dscommerce;
+package com.caue.democommerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DscommerceApplication {
+public class DemoCommerceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DscommerceApplication.class, args);
+		SpringApplication.run(DemoCommerceApplication.class, args);
 	}
 
 }

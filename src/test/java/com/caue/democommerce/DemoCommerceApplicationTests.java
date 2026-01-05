@@ -1,10 +1,10 @@
-package com.caue.dscommerce;
+package com.caue.democommerce;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DscommerceApplicationTests {
+class DemoCommerceApplicationTests {
 
 	@Test
 	void contextLoads() {
