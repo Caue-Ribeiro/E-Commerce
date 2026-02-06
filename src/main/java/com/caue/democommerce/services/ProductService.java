@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
 @Service
 public class ProductService {
 
@@ -25,23 +24,35 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(Pageable pageable){
-        Page<Product> products =  repository.findAll(pageable);
+    public Page<ProductDTO> findAll(Pageable pageable) {
+        Page<Product> products = repository.findAll(pageable);
 
         return products.map(ProductDTO::new);
     }
 
     @Transactional
-    public ProductDTO insert(ProductDTO dto){
+    public ProductDTO insert(ProductDTO dto) {
         Product entity = new Product();
+        copyDtoToEntity(entity, dto);
+        entity = repository.save(entity);
+        return new ProductDTO(entity);
+    }
+
+    @Transactional
+    public ProductDTO update(Long id, ProductDTO dto) {
+
+        Product entity = repository.getReferenceById(id);
+        copyDtoToEntity(entity, dto);
+        entity = repository.save(entity);
+        return new ProductDTO(entity);
+    }
+
+    private void copyDtoToEntity(Product entity, ProductDTO dto) {
+
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         entity.setImgUrl(dto.getImgUrl());
         entity.setPrice(dto.getPrice());
-
-       entity =  repository.save(entity);
-
-       return new ProductDTO(entity);
     }
 
 }
