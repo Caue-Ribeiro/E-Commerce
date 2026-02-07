@@ -2,12 +2,23 @@ package com.caue.democommerce.dto;
 
 
 import com.caue.democommerce.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class ProductDTO {
 
     private Long id;
+
+    @Size(min = 3,max = 80,message = "Name must have between 3 to 80 characters")
+    @NotBlank(message = "Required field")
     private String name;
+
+    @Size(min = 10,message = "Description must have a minimum of 10 characters")
+    @NotBlank(message = "Required field")
     private String description;
+
+    @Positive(message = "Price must be positive")
     private Double price;
     private String imgUrl;
 
