@@ -1,6 +1,6 @@
 package com.caue.democommerce.dto;
 
-public class FieldMessage {
+public class FieldMessage{
 
     private final String fieldName;
 
