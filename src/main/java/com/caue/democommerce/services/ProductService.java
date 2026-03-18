@@ -33,6 +33,13 @@ public class ProductService {
         return products.map(ProductDTO::new);
     }
 
+    @Transactional(readOnly = true)
+    public Page<ProductDTO> searchByName(String name,Pageable pageable) {
+        return  repository.searchByName(name,pageable);
+
+
+    }
+
     @Transactional
     public ProductDTO insert(ProductDTO dto) {
         Product entity = new Product();
