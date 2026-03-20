@@ -13,6 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT new com.caue.democommerce.dto.ProductDTO(obj) FROM Product obj WHERE UPPER(obj.name) LIKE UPPER" +
             "('%'||:name ||'%')")
-    Page<ProductDTO> searchByName(@Param("name") String name, Pageable pageable);
+    Page<ProductDTO> findProducts(@Param("name") String name, Pageable pageable);
 
 }
