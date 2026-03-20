@@ -1,6 +1,7 @@
 package com.caue.democommerce.services;
 
 import com.caue.democommerce.dto.ProductDTO;
+import com.caue.democommerce.dto.ProductMinDTO;
 import com.caue.democommerce.entities.Product;
 import com.caue.democommerce.repositories.ProductRepository;
 import com.caue.democommerce.services.exceptions.DatabaseException;
@@ -27,7 +28,7 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findProducts(String name,Pageable pageable) {
+    public Page<ProductMinDTO> findProducts(String name, Pageable pageable) {
         return  repository.findProducts(name,pageable);
 
 

@@ -1,6 +1,7 @@
 package com.caue.democommerce.controllers;
 
 import com.caue.democommerce.dto.ProductDTO;
+import com.caue.democommerce.dto.ProductMinDTO;
 import com.caue.democommerce.services.ProductService;
 import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
@@ -31,10 +32,10 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findProducts(@RequestParam(name = "name", defaultValue = "") String name,
-                                                         Pageable pageable) {
+    public ResponseEntity<Page<ProductMinDTO>> findProducts(@RequestParam(name = "name", defaultValue = "") String name,
+                                                            Pageable pageable) {
 
-        Page<ProductDTO> dto =  service.findProducts(name,pageable);
+        Page<ProductMinDTO> dto =  service.findProducts(name,pageable);
 
         return ResponseEntity.ok().body(dto);
     }
