@@ -1,7 +1,9 @@
 package com.caue.democommerce.services;
 
+import com.caue.democommerce.dto.CategoryDTO;
 import com.caue.democommerce.dto.ProductDTO;
 import com.caue.democommerce.dto.ProductMinDTO;
+import com.caue.democommerce.entities.Category;
 import com.caue.democommerce.entities.Product;
 import com.caue.democommerce.repositories.ProductRepository;
 import com.caue.democommerce.services.exceptions.DatabaseException;
@@ -78,6 +80,13 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setImgUrl(dto.getImgUrl());
         entity.setPrice(dto.getPrice());
+
+        entity.getCategories().clear();
+        for (CategoryDTO catDTO: dto.getCategories()){
+            Category cat = new Category();
+            cat.setId(catDTO.getId());
+            entity.getCategories().add(cat);
+        }
     }
 
 }

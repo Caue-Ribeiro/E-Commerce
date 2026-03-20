@@ -1,10 +1,15 @@
 package com.caue.democommerce.dto;
 
 
+import com.caue.democommerce.entities.Category;
 import com.caue.democommerce.entities.Product;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -21,6 +26,9 @@ public class ProductDTO {
     @Positive(message = "Price must be positive")
     private Double price;
     private String imgUrl;
+
+    @NotEmpty(message = "Product must have at least one category")
+    private List<CategoryDTO> categories = new ArrayList<>();
 
     public ProductDTO() {
     }
@@ -39,6 +47,10 @@ public class ProductDTO {
         description = entity.getDescription();
         price = entity.getPrice();
         imgUrl = entity.getImgUrl();
+
+        for (Category cat: entity.getCategories()){
+            categories.add(new CategoryDTO(cat));
+        }
     }
 
     public Long getId() {
@@ -79,5 +91,9 @@ public class ProductDTO {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public List<CategoryDTO> getCategories() {
+        return categories;
     }
 }

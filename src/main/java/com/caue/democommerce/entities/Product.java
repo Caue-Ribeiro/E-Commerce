@@ -2,6 +2,7 @@ package com.caue.democommerce.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.HashSet;
 import java.util.List;
@@ -83,6 +84,10 @@ public class Product {
 
     public List<Order> getOrders(){
         return items.stream().map(OrderItem::getOrder).toList();
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
     }
 
     @Override
