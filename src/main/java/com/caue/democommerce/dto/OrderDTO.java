@@ -3,6 +3,7 @@ package com.caue.democommerce.dto;
 import com.caue.democommerce.entities.Order;
 import com.caue.democommerce.entities.OrderItem;
 import com.caue.democommerce.enums.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class OrderDTO {
     private ClientDTO client;
     private PaymentDTO payment;
 
+    @NotEmpty(message = "Order must have at least one item")
     private List<OrderItemDTO> items = new ArrayList<>();
 
 

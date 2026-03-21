@@ -58,7 +58,7 @@ public class OrderItem {
         return price;
     }
 
-    public double getSubTotal(){
+    public Double getSubTotal(){
         return quantity* price;
     }
 
