@@ -58,6 +58,10 @@ public class OrderItem {
         return price;
     }
 
+    public double getSubTotal(){
+        return quantity* price;
+    }
+
     public void setPrice(Double price) {
         this.price = price;
     }

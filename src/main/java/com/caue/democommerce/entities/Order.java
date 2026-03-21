@@ -78,6 +78,18 @@ public class Order {
         return items.stream().map(OrderItem::getProduct).toList();
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
