@@ -3,10 +3,7 @@ package com.caue.democommerce.dto;
 
 import com.caue.democommerce.entities.Category;
 import com.caue.democommerce.entities.Product;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,8 @@ public class ProductDTO {
     @NotBlank(message = "Required field")
     private String description;
 
-    //@Positive(message = "Price must be positive")
+    @NotNull(message = "Required field")
+    @Positive(message = "Price must be positive")
     private Double price;
     private String imgUrl;
 
