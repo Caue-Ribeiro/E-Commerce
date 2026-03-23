@@ -1,4 +1,4 @@
-package com.caue.democommerce.services.exceptions;
+package com.caue.democommerce.exceptions;
 
 public class DatabaseException extends RuntimeException {
     public DatabaseException(String message) {

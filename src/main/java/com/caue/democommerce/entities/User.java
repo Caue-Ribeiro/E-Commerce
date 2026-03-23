@@ -125,15 +125,10 @@ public class User implements UserDetails {
         roles.add(role);
     }
 
-    public boolean hasRole(String roleName){
+    public boolean hasRole(String roleName) {
 
-        for (Role role: roles){
-
-            if(role.getAuthority()!= null && role.getAuthority().equals(roleName)){
-                return true;
-            }
-        }
-        return false;
+        return roles.stream()
+                .anyMatch(role -> !(role.getAuthority() == null) && role.getAuthority().equals(roleName));
     }
 
     public Set<Role> getRoles() {

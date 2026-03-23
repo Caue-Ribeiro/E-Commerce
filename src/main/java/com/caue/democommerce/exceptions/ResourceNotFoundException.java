@@ -1,4 +1,4 @@
-package com.caue.democommerce.services.exceptions;
+package com.caue.democommerce.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

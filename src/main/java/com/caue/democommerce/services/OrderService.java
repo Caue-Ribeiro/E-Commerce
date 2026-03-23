@@ -7,10 +7,11 @@ import com.caue.democommerce.entities.OrderItem;
 import com.caue.democommerce.entities.Product;
 import com.caue.democommerce.entities.User;
 import com.caue.democommerce.enums.OrderStatus;
+import com.caue.democommerce.exceptions.ForbiddenException;
 import com.caue.democommerce.repositories.OrderItemRepository;
 import com.caue.democommerce.repositories.OrderRepository;
 import com.caue.democommerce.repositories.ProductRepository;
-import com.caue.democommerce.services.exceptions.ResourceNotFoundException;
+import com.caue.democommerce.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,20 +24,24 @@ public class OrderService {
     private final UserService userService;
     private final ProductRepository productRepository;
     private final OrderItemRepository orderItemRepository;
+    private final AuthService authService;
 
-    public OrderService(OrderRepository repository, UserService userService, ProductRepository productRepository, OrderItemRepository orderItemRepository) {
+    public OrderService(OrderRepository repository, UserService userService, ProductRepository productRepository, OrderItemRepository orderItemRepository, AuthService authService) {
         this.repository = repository;
         this.userService = userService;
         this.productRepository = productRepository;
         this.orderItemRepository = orderItemRepository;
+        this.authService = authService;
     }
 
     @Transactional(readOnly = true)
     public OrderDTO getOrderById(Long orderId) {
 
-        Order entity = repository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+        Order order = repository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
 
-        return new OrderDTO(entity);
+        authService.validateUserAccessToOrder(order.getClient().getId());
+
+        return new OrderDTO(order);
     }
 
     @Transactional
@@ -62,4 +67,6 @@ public class OrderService {
         return new OrderDTO(order);
 
     }
+
+
 }
