@@ -7,7 +7,6 @@ import com.caue.democommerce.entities.OrderItem;
 import com.caue.democommerce.entities.Product;
 import com.caue.democommerce.entities.User;
 import com.caue.democommerce.enums.OrderStatus;
-import com.caue.democommerce.exceptions.ForbiddenException;
 import com.caue.democommerce.repositories.OrderItemRepository;
 import com.caue.democommerce.repositories.OrderRepository;
 import com.caue.democommerce.repositories.ProductRepository;

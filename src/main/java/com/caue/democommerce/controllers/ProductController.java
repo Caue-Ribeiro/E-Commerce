@@ -3,10 +3,7 @@ package com.caue.democommerce.controllers;
 import com.caue.democommerce.dto.ProductDTO;
 import com.caue.democommerce.dto.ProductMinDTO;
 import com.caue.democommerce.services.ProductService;
-import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +17,12 @@ import java.net.URI;
 @RequestMapping(value = "/products")
 public class ProductController {
 
-    @Autowired
-    private ProductService service;
+
+    private final ProductService service;
+
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
