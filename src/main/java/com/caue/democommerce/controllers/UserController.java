@@ -4,9 +4,10 @@ import com.caue.democommerce.dto.UserDTO;
 import com.caue.democommerce.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -25,5 +26,16 @@ public class UserController {
         UserDTO user = service.getMyUser();
 
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping
+    public ResponseEntity<UserDTO> insertUser(@RequestBody UserDTO dto){
+        UserDTO newUser = service.insertUser(dto);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newUser.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(newUser);
     }
 }

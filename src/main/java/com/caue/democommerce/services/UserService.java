@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +21,11 @@ import java.util.List;
 public class UserService implements UserDetailsService {
 
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -59,6 +62,23 @@ public class UserService implements UserDetailsService {
 
         User entity = authenticated();
 
+        return new UserDTO(entity);
+    }
+
+    @Transactional
+    public UserDTO insertUser(UserDTO dto) {
+        User entity = new User();
+        entity.setName(dto.getName());
+        entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
+        entity.setBirthDate(dto.getBirthDate());
+        entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+
+        // Add default CLIENT role
+        Role clientRole = new Role(2L, "ROLE_CLIENT");
+        entity.addRole(clientRole);
+
+        entity = repository.save(entity);
         return new UserDTO(entity);
     }
 }

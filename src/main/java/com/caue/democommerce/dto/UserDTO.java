@@ -15,6 +15,7 @@ public class UserDTO {
     private String email;
     private String phone;
     private LocalDate birthDate;
+    private String password;
 
     private List<String> roles = new ArrayList<>();
 
@@ -71,6 +72,14 @@ public class UserDTO {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<String> getRoles() {
