@@ -74,7 +74,6 @@ public class UserService implements UserDetailsService {
         entity.setBirthDate(dto.getBirthDate());
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 
-        // Add default CLIENT role
         Role clientRole = new Role(2L, "ROLE_CLIENT");
         entity.addRole(clientRole);
 
